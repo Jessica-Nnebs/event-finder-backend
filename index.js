@@ -12,18 +12,12 @@ app.listen(port, () => {
 })
 
 // to use in another file with request
-const myDB = require('./mySQL/mySQLconnection')
+const explorer = require('./ReqResFunc/explorer')
+app.get('/explorer', explorer.routeHandlerFunction)
 
-const getTables = async () => {
-    const myQueryEVENTS = 'SELECT * FROM EVENTS';
-    const myQueryUSERSEVENTS = 'SELECT * FROM USERSEVENTS';
-    const events = await myDB.queryDB(myQueryEVENTS);
-    const usersevents = await myDB.queryDB(myQueryUSERSEVENTS);
-    console.log(events[0]);
-    console.log(usersevents[0]);
-}
-
-getTables()
+// get data from category
+const explorerGetCategory = require('./ReqResFunc/explorerGetCategory')
+app.get('/category', explorerGetCategory.routeHandlerFunction)
 
 // GET request to collect data in event database - path '/events'
 // Filter data from userEvents table to get number of people particiating
