@@ -1,0 +1,64 @@
+GET http://localhost:8080/explorer
+
+####
+GET http://localhost:8080/category/?category=Yoga
+
+#####
+GET http://localhost:8080/category/?category=Festival
+
+#####
+GET http://localhost:8080/category/?category=Restaurant
+
+#####
+GET http://localhost:8080/category/?category=Literature
+
+
+
+
+
+
+
+#####
+GET http://localhost:4000/trees/filter
+Content-Type: application/json
+
+{
+    "tree_name": "",
+    "tree_species": "",
+    "country": "Romania",
+    "price": 0,
+    "co2_emissions": 0
+}
+
+####
+
+POST http://localhost:4000/trees
+Content-Type: application/json
+
+{
+    "tree_name": "newTree100",
+    "tree_species": "new tree",
+    "country": "Austria",
+    "growth_rate": 20,
+    "price": 100,
+    "co2_emissions": 80,
+    "land_area": 50,
+    "tree_date": "2021-01-13",
+    "tree_description": "Some random text"
+}
+####
+
+POST http://localhost:4000/userorders
+Content-Type: application/json
+
+{
+    "tree_name": "newTree100",
+    "tree_species": "new tree",
+    "country": "Austria",
+    "growth_rate": 20,
+    "price": 100,
+    "co2_emissions": 80,
+    "land_area": 50,
+    "tree_date": "2021-01-13",
+    "tree_description": "Some random text"
+}
