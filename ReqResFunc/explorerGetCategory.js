@@ -11,7 +11,7 @@ const routeHandlerFunction = async (req, res) => {
 
         const category = await req.query.category;
         console.log(category)
-        console.log('Hello')
+
         myQuery = `SELECT
          EVENTS.event_id,
          EVENTS.event_category,
