@@ -5,6 +5,9 @@ const routeHandlerFunction = async (req, res) => {
     try {
         console.log('----START---- GET request - Get data for explorer - Path: "/explorer"')
 
+        const searchText = await req.query.searchtext;
+        console.log(searchText)
+
         myQuery = `SELECT
         EVENTS.event_id,
         EVENTS.event_category,
@@ -15,18 +18,19 @@ const routeHandlerFunction = async (req, res) => {
         EVENTS.event_city,
         EVENTS.event_postalcode,
         EVENTS.event_address,
-        EVENTS.event_gps_lat,
-        EVENTS.event_gps_lon,
+        EVENTS.event_gps_latitude,
+        EVENTS.event_gps_longitude,
         EVENTS.event_host_phone,
         EVENTS.event_host_email,
         EVENTS.event_price,
-        EVENTS.event_date,
+        EVENTS.event_start_date,
+        EVENTS.event_end_date,
         EVENTS.event_creation_date,
-        EVENTS.event_image,
         EVENTS.event_max_participants,
         COUNT(EVENTS.event_id) as number_participants,
         EVENTS.event_max_participants - COUNT(EVENTS.event_id) as open_spots
-        FROM USERSEVENTS INNER JOIN EVENTS ON USERSEVENTS.event_id=EVENTS.event_id
+        FROM USERSEVENTS RIGHT JOIN EVENTS ON USERSEVENTS.event_id=EVENTS.event_id
+        WHERE EVENTS.event_title LIKE '%${searchText}%'
         GROUP BY EVENTS.event_id;`
 
         const explorerData = await mySQL.queryDB(myQuery);
@@ -34,7 +38,7 @@ const routeHandlerFunction = async (req, res) => {
         res.status(200)
         res.json(explorerData)
 
-        console.log('----END------ GET request - Get data for explorer - Path: "/explorer"')
+        console.log('----END------ GET request - Get data for explorer - Search - Path: "/explorer"')
 
     } catch {
         (e) => {
