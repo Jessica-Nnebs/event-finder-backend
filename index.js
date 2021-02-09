@@ -1,23 +1,50 @@
 const Express = require("Express");
 const cors = require("cors");
+const sharp = require('sharp');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage })
 
 const app = Express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 7777;
 
 app.use(Express.json());
 app.use(cors());
+
+/* app.use(Express.static('public'))
+app.use('/static', Express.static('public')) */
+/* const dir = path.join(__dirname, 'public');
+app.use(Express.static(dir)); */
+app.use(Express.static('public'));
 
 app.listen(port, () => {
     console.log(`-> -> -> -> Listening at port ${port} <- <- <- <-`)
 })
 
 // to use in another file with request
-const explorer = require('./ReqResFunc/explorer')
-app.get('/explorer', explorer.routeHandlerFunction)
+const explore = require('./ReqResFunc/explore')
+app.get('/explore', explore.routeHandlerFunction)
 
 // get data from category
-const explorerGetCategory = require('./ReqResFunc/explorerGetCategory')
-app.get('/category', explorerGetCategory.routeHandlerFunction)
+const exploreGetCategory = require('./ReqResFunc/exploreGetCategory')
+app.get('/category', exploreGetCategory.routeHandlerFunction)
+
+// search text
+const exploreSearch = require('./ReqResFunc/exploreSearch')
+app.get('/search', exploreSearch.routeHandlerFunction)
+
+// Insert new event in events table
+const insertEvent = require('./ReqResFunc/insertEvent')
+app.post('/events', insertEvent.routeHandlerFunction)
+
+// Receive image
+const saveImage = require('./ReqResFunc/saveImage')
+app.post('/image', upload.single('avatar'), saveImage.routeHandlerFunction)
+
+/* // Receive image from user
+const saveImageUser = require('./ReqResFunc/saveImageUser')
+app.post('/imageuser', upload.single('avatar'), saveImageUser.routeHandlerFunction) */
+
 
 // GET request to collect data in event database - path '/events'
 // Filter data from userEvents table to get number of people particiating
