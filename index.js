@@ -1,6 +1,5 @@
 const Express = require("Express");
 const cors = require("cors");
-const sharp = require('sharp');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage })
@@ -40,6 +39,15 @@ app.post('/events', insertEvent.routeHandlerFunction)
 // Receive image
 const saveImage = require('./ReqResFunc/saveImage')
 app.post('/image', upload.single('avatar'), saveImage.routeHandlerFunction)
+
+//register a new user
+const registerUser = require('./ReqResFunc/registerUser')
+app.post('/registeruser', registerUser.routeHandlerFunction)
+
+// User login
+const userLogin = require('./ReqResFunc/userLogin')
+app.get('/userlogin', userLogin.routeHandlerFunction)
+
 
 /* // Receive image from user
 const saveImageUser = require('./ReqResFunc/saveImageUser')
