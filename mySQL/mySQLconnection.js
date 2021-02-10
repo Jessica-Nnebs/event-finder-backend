@@ -22,11 +22,11 @@ const queryDB = async (myQuery) => {
         }); */
 
     const SQLconnection = await mysql2.createPool({
-        host: 'localhost',
+        host: '51.15.69.29',
         user: 'root',
         port: '3306',
-        password: 'password',
-        database: 'event_finder',
+        password: 'cmft2020',
+        database: 'eventi',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0
