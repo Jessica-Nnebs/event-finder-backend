@@ -22,7 +22,6 @@ const routeHandlerFunction = async (req, res) => {
         const user = await mySQL.queryDB(myQuery);
         console.log(user)
         const user_id = user[0].USER_ID
-        const user
 
         if (!!user.length) {
             const user_id = user[0].USER_ID
