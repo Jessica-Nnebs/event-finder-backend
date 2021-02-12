@@ -17,21 +17,20 @@ const routeHandlerFunction = async (req, res) => {
         console.log(user_password)
 
         myQuery = `SELECT * FROM USERS WHERE user_name='${user_name}' AND user_password='${user_password}';`
-
+        console.log(myQuery)
 
         const user = await mySQL.queryDB(myQuery);
         console.log(user)
-        const user_id = user[0].USER_ID
 
+        let user_id = await 0
+        const canUserLogin = await !!user.length
         if (!!user.length) {
-            const user_id = user[0].USER_ID
+            user_id = user[0].USER_ID
             console.log(user_id)
         }
 
-
-
         res.status(200)
-        res.json({ user_id })
+        res.json({ canUserLogin, user_id })
 
         console.log('----END------ GET request - Confirm user credentials - Path: "/userlogin"')
 
