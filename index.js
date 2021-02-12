@@ -48,6 +48,10 @@ app.post('/registeruser', registerUser.routeHandlerFunction)
 const userLogin = require('./ReqResFunc/userLogin')
 app.get('/userlogin', userLogin.routeHandlerFunction)
 
+// User login
+const userData = require('./ReqResFunc/userData')
+app.get('/userdata', userData.routeHandlerFunction)
+
 
 /* // Receive image from user
 const saveImageUser = require('./ReqResFunc/saveImageUser')

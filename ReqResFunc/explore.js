@@ -3,7 +3,7 @@ const mySQL = require('../mySQL/mySQLconnection')
 
 const routeHandlerFunction = async (req, res) => {
     try {
-        console.log('----START---- GET request - Get data for explorer - Path: "/explorer"')
+        console.log('----START---- GET request - Get data for explorer - Path: "/explore"')
 
         console.log(req.query)
 
@@ -36,7 +36,7 @@ const routeHandlerFunction = async (req, res) => {
         res.status(200)
         res.json(explorerData)
 
-        console.log('----END------ GET request - Get data for explorer - Path: "/explorer"')
+        console.log('----END------ GET request - Get data for explorer - Path: "/explore"')
 
     } catch {
         (e) => {
