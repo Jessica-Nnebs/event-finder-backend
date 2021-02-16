@@ -52,6 +52,14 @@ app.get('/userlogin', userLogin.routeHandlerFunction)
 const userData = require('./ReqResFunc/userData')
 app.get('/userdata', userData.routeHandlerFunction)
 
+// LANDING PAGE
+// Get GPS coordinates from user typed address
+const getAddressGPSCoordinates = require('./ReqResFunc/getAddressGPSCoordinates')
+app.get('/getcoordinates', getAddressGPSCoordinates.routeHandlerFunction)
+// Get events for search text typed by user
+const getSearchTextData = require('./ReqResFunc/getSearchTextData')
+app.get('/getsearchData', getSearchTextData.routeHandlerFunction)
+
 
 /* // Receive image from user
 const saveImageUser = require('./ReqResFunc/saveImageUser')
