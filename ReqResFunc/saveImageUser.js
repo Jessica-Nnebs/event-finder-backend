@@ -5,9 +5,10 @@ const routeHandlerFunction = async (req, res) => {
     try {
         console.log('----START---- POST request - Get image - Path: "/imageuser"')
 
-        /*         console.log(req)
-                console.log(req.body)
-                console.log(req.file) */
+        console.log(req)
+        console.log(req.body)
+        console.log(req.body.user_id)
+        console.log(req.file)
 
         myQuery = "SELECT MAX(EVENT_ID) AS 'MAX_EVENT_ID' FROM EVENTS;"
 
@@ -15,7 +16,7 @@ const routeHandlerFunction = async (req, res) => {
         console.log(max_event_id)
 
 
-        await sharp(req.file.buffer).resize({ width: 500 }).toFile('./public/events/' + max_event_id[0].MAX_EVENT_ID + '.jpg')
+        await sharp(req.file.buffer).resize({ width: 500 }).toFile('./public/usersimages/' + req.body.user_id + '.png')
 
         res.status(200)
         res.json('Image was saved')

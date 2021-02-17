@@ -14,6 +14,7 @@ const routeHandlerFunction = async (req, res) => {
         console.log(user_data)
 
         const userData = await {
+            user_id: user_data[0].USER_ID,
             user_name: user_data[0].USER_NAME,
             user_first_name: user_data[0].USER_FIRST_NAME,
             user_last_name: user_data[0].USER_LAST_NAME,
